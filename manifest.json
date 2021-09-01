@@ -1,0 +1,43 @@
+{
+    "manifest_version": 2,
+    "name": "Facebook找GPP工具",
+    "description": "Facebook批量找小组/专页/地标工具。",
+    "author": "dev-coco",
+    "version": "1.0.0",
+    "browser_action": {
+      "default_icon": "icon.png"
+    },
+    "icons": {
+      "128": "icon.png"
+    },
+    "background" : {
+        "scripts" : ["background.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.facebook.com/search/groups*"],
+            "js": ["groups_scroll.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        },
+        {
+            "matches": ["https://www.facebook.com/search/top*"],
+            "js": ["places_scroll.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        },
+        {
+            "matches": ["https://www.facebook.com/search/pages*"],
+            "js": ["pages_scroll.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ],
+    "permissions": [
+      "*://*.facebook.com/*",
+      "*://*.fbcdn.net/*",
+      "webRequest",
+      "webRequestBlocking"
+    ]
+}
+
